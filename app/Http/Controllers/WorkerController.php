@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Request as X; // Валидатор
 use App\Company;
 use Mail;
+use App\User;
 use App\Http\Requests\ZajavkaRequest;
 use App\Http\Requests\MailRequest;
 use Webklex\IMAP\Client as IMAPCLIENT;
@@ -86,7 +87,26 @@ class WorkerController extends Controller
         if ($request->user()->role_id === 2)
         {
           $state = State::orderBy('id')->pluck('name', 'id');
-          return view('WorkerPanel.edit', compact('request1', 'state'));
+          if ($request1->state_id == 1)
+          {
+            $min1 = State::where('name', '=', 'Принята')->value('time_execution');
+            $min1 = $min1 * 60;
+            $begintime = strtotime($request1->created_at) + $min1;
+            $endtime = date('c', $begintime);
+          }
+          if ($request1->state_id == 2)
+          {
+            $min1 = State::where('name', '=', 'Выполняется')->value('time_execution');
+            $min1 = $min1 * 60;
+            $begintime = strtotime($request1->updated_at) + $min1;
+            $endtime = date('c', $begintime);
+          }
+          if ($request1->state_id == 3)
+          {
+            $min1 = State::where('name', '=', 'Готова')->value('time_execution');
+            $endtime = 0;
+          }
+          return view('WorkerPanel.edit', compact('request1', 'state', 'endtime'));
         }
         else
         {
@@ -175,5 +195,23 @@ class WorkerController extends Controller
     {
       $states = State::orderBy('id', 'ASC')->get();
       return StateCollection::collection($states);
+    }
+
+    public function decrating(R $request1)
+    {
+      $attributes = $request1->only(['user_id']);
+      $user = User::findOrFail($attributes['user_id']);
+      $user->rating = $user->rating - 2;
+      $user->update();
+      var_dump('Ваш рейтинг понижен на 20 единиц!!!');
+    }
+
+    public function incrating(R $request1)
+    {
+      $attributes = $request1->only(['user_id']);
+      $user = User::findOrFail($attributes['user_id']);
+      $user->rating = $user->rating + 1;
+      $user->update();
+      var_dump('Ваш рейтинг повышен на 5 единиц!!!');
     }
 }

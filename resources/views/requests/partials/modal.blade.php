@@ -8,9 +8,9 @@
         </button>
       </div>
       <div class="modal-body">
-        {{ Form::text('CompName', null, ['class' => 'form-control', 'placeholder' => 'Название компании']) }}
-        {{ Form::text('CompMail', null, ['class' => 'form-control', 'placeholder' => 'Эл. потча компании']) }}
-        {{ Form::text('CompPhone', null, ['class' => 'form-control', 'placeholder' => 'Телефон']) }}
+      <p>  {{ Form::text('CompName', null, ['class' => 'form-control', 'placeholder' => 'Название компании']) }} </p>
+      <p>  {{ Form::text('CompMail', null, ['class' => 'form-control', 'placeholder' => 'Эл. потча компании']) }} </p>
+      <p>  {{ Form::text('CompPhone', null, ['class' => 'form-control', 'placeholder' => 'Телефон']) }} </p>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-secondary" style="background-color: red; color: white;" data-dismiss="modal">{{__('Отмена')}}</button>

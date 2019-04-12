@@ -32,4 +32,42 @@
 }}
 {{Form::close()}}
 
+{{
+    Form::model($request1, [
+        'method' => 'PUT',
+        'route'  => [
+            'WorkerPanel.decrating',
+            $request1->id,
+        ]
+    ])
+}}
+{{
+    Form::submit(
+        __('Отнять 2'),
+        [
+            'class' => 'btn btn-danger',
+        ]
+    )
+}}
+{{Form::close()}}
+
+{{
+    Form::model($request1, [
+        'method' => 'PUT',
+        'route'  => [
+            'WorkerPanel.incrating',
+            $request1->id,
+        ]
+    ])
+}}
+{{
+    Form::submit(
+        __('Прибавить 1'),
+        [
+            'class' => 'btn btn-primary',
+        ]
+    )
+}}
+{{Form::close()}}
+
 @endsection

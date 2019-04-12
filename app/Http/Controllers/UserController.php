@@ -54,8 +54,9 @@ class UserController extends Controller
     public function store(UserRequest $ru)
     {
       //var_dump($user);
-
+      $rating = 50;
       $attributesuser = $ru->only(['login', 'password', 'email', 'name', 'surname', 'patronymic', 'phone', 'telename', 'role_id', 'position_id']);
+      $attributesuser['rating'] = $rating;
       $newuser = User::create($attributesuser);
       return redirect(route('AdminPanel/Users/index'));
     }

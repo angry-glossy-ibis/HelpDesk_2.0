@@ -47,6 +47,12 @@ Route::resource('request1', 'AdminRequestController');
 Route::get('WorkerPanel/index', 'WorkerController@index')
       ->name('WorkerPanel.index');
 
+Route::put('WorkerPanel/{request1}/decrating', 'WorkerController@decrating')
+      ->name('WorkerPanel.decrating');
+
+Route::put('WorkerPanel/{request1}/incrating', 'WorkerController@incrating')
+      ->name('WorkerPanel.incrating');
+
 Route::resource('requests1', 'RequestController');
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('WorkerPanel/{request1}/edit', 'WorkerController@edit')

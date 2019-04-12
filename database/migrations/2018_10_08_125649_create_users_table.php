@@ -21,13 +21,14 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('name');
             $table->string('surname');
-            $table->string('patronymic');
+            $table->string('patronymic')->nullable();
             $table->Biginteger('phone');
             $table->string('TeleName')->nullable();
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE')->onUpdate('RESTRICT');
             $table->integer('position_id')->unsigned();
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('CASCADE')->onUpdate('RESTRICT');
+            $table->integer('rating');
             $table->rememberToken();
             $table->timestamps();
         });

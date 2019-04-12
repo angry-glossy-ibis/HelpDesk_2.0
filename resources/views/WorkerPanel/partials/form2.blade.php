@@ -1,4 +1,9 @@
 {{-- Этот шаблон с полями формы, свёрстанный для Bootstrap --}}
+<script defer
+src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js"
+integrity="sha256-SECU2CXX/L0UAxX9pvFJ6cs1qiGsPEFDmVSGndEJRsE="
+crossorigin="anonymous"></script>
+<script defer src="{{ asset('js/timer.js') }}"></script>
 <div class="row">
 <div class="col-sm-15">
 <div class="container-fluid 1">
@@ -70,8 +75,14 @@
 {{ Form::label('state', __('Статус')) }}
 {{ Form::select('state_id', $state, $request1->state_id, ['class' => 'form-control']) }}
 </div>
+<div class="form-group">
+{{ Form::label('endtime', __('Дата окончания статуса заявки')) }}
+{{ Form::text('endtime', null, ['class' => 'form-control', 'disabled']) }}
+<div id="clockdiv">
 </div>
-
+</div>
+</div>
+{{ Form::hidden('endtimer',$endtime, ['id'=>'endtimer']) }}
 <div class="row">
 <div class="col-lg4 summary" style="margin-left: 20px">
   <div class="form-group">
@@ -86,6 +97,7 @@
   <p>
   {{ Form::label('comm', __('Комментарий')) }}
   {{ Form::textarea('comm', $request1->comm, ['class' => 'form-control']) }}
+  {{ Form::hidden('id', $request1->id, ['id'=>'requestid']) }}
   <p>
   </div>
 </div>

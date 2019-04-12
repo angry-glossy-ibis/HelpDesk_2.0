@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-sm-15">
 <div class="container-fluid 1">
-<p><a class="col-4 btn btn-success" href="{{ route("requests.index") }}">{{__('Список заявок')}}</a></p>
+<p><a class="col btn btn-success" href="{{ route("requests.index") }}">{{__('Список заявок')}}</a></p>
 </div>
 </div>
 </div>

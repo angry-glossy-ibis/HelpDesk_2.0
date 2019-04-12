@@ -5,6 +5,14 @@
 
 {{-- В секции title родительского шаблона будет выведен перевод фразы: Create product --}}
 @section('title', __('Добавление сотрудника'))
+  <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script defer src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+
+  <script>
+  $(function() {
+    $("#phone").mask("8(999) 999-9999");
+  });
+  </script>
 
 {{-- В секции main родительского шаблона будет выведена форма --}}
 @section('main')
@@ -76,7 +84,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('телефон') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
+                                <input id="phone" type="phone" class="phone" name="phone" value="{{ old('phone') }}" required autofocus>
 
                                 @if ($errors->has('phone'))
                                     <span class="invalid-feedback" role="alert">

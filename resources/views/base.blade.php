@@ -14,7 +14,7 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js">
   </script>
   <![endif]-->
-  <script defer src="{{ asset('js/app.js') }}" defer></script>
+  <script defer src="{{ asset('js/app.js') }}"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -22,6 +22,7 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

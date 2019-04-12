@@ -17,15 +17,16 @@
 <div class="container-fluid 3">
 </div>
 <p>
-<a class="col btn btn-success" href="{{ route("WorkerPanel.index") }}">{{__('назад')}}</a>
+<a class="col btn btn-danger" href="{{ route("WorkerPanel.index") }}">{{__('назад')}}</a>
 </p>
+<hr>
 <p>
-<a class="col btn btn-success" href="{{ route("requests.create") }}">{{__('создать заявку')}}</a>
+<a class="col btn btn-primary" href="{{ route("requests.create") }}">{{__('создать заявку')}}</a>
 </p>
 </div>
 </div>
     <div class="table-responsive">
-        <table id="table-id" class="table table-hover table-striped">
+        <table id="table-id" class="table table-hover">
 <thead>
 
             <tr>
@@ -42,8 +43,13 @@
             </tr>
           </thead>
             @foreach ($requests1 as $request1)
-                <tr>
-                  <td> <a class="btn btn-block btn-primary" href="{{ route("WorkerPanel.show", $request1->id)}}">{{__($request1->id)}}</a>
+                <tr class="@if ($request1->state_id == 1)
+                  warning-opacity-50
+                  @elseif ($request1->state_id == 2)
+                  bg-success-50
+                  @endif" >
+
+                  <td> <a class="btn btn-block btn-primary" href="{{ route("WorkerPanel.show", $request1->id)}}">{{__('Тех-')}}{{__($request1->id)}}</a>
                   </td>
                     <td>{{ $request1->state->name }}</td>
                     <td>{{ $request1->client->company->CompName }}</td>
@@ -51,7 +57,7 @@
                     <td>{{ $request1->summary }}</td>
                     <td>{{ $request1->comm }}</td>
                     <td>{{ $request1->created_at }}</td>
-                    <td>  
+                    <td>
                       <a class="btn btn-block btn-warning" href="{{ route("WorkerPanel.edit", $request1->id)}}">{{__('Изменить')}}</a>
                     </td>
                     <td> <a class="btn btn-block btn-danger" href="{{ route("WorkerPanel.remove", $request1->id)}}">{{__('X')}}</a>
