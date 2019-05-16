@@ -21,9 +21,10 @@ class CreateRequestsTable extends Migration
             $table->foreign('state_id')->references('id')->on('states')->onDelete('CASCADE')->onUpdate('RESTRICT');
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('CASCADE')->onUpdate('RESTRICT');
-            $table->string('name', 200);
+            $table->integer('problem_id')->unsigned();
+            $table->foreign('problem_id')->references('id')->on('problems')->onDelete('CASCADE')->onUpdate('RESTRICT');
             $table->text('summary');
-            $table->text('comm');
+            $table->text('comm')->nullable();
             $table->timestamps();
         });
     }

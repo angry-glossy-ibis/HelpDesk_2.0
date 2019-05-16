@@ -93,28 +93,31 @@ Route::get('AdminPanel/Users/destroy', 'UserController@destroy')
       ->name('AdminPanel/Users/destroy');
 Route::resource('user', 'UserController');
 ////////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('AdminPanel/Companis/index', 'CompanyController@index')
-      ->name('AdminPanel/Companis/index');
+Route::get('AdminPanel/Companies/index', 'CompanyController@index')
+      ->name('AdminPanel/Companies/index');
 
-Route::get('AdminPanel/Companis/create', 'CompanyController@create')
-      ->name('AdminPanel/Companis/create');
+Route::get('AdminPanel/Companies/create', 'CompanyController@create')
+      ->name('AdminPanel/Companies/create');
 
-Route::get('AdminPanel/Companis/{company1}/show', 'CompanyController@show')
-      ->name('AdminPanel/Companis/show');
+Route::get('AdminPanel/Companies/{company}/show', 'CompanyController@show')
+      ->name('AdminPanel/Companies/show');
 
-Route::get('AdminPanel/Companis/{company1}/edit', 'CompanyController@edit')
-      ->name('AdminPanel/Companis/edit');
+Route::get('AdminPanel/Companies/{company}/edit', 'CompanyController@edit')
+      ->name('AdminPanel/Companies/edit');
 
-Route::get('AdminPanel/Companis/{company1}/update', 'CompanyController@update')
-     ->name('AdminPanel/Companis/update');
+Route::put('AdminPanel/Companies/{company}/update', 'CompanyController@update')
+     ->name('AdminPanel/Companies/update');
 
-Route::get('AdminPanel/Companis/{company1}/remove', 'CompanyController@remove')
-      ->name('AdminPanel/Companis/remove');
+Route::get('AdminPanel/Companies/{company}/remove', 'CompanyController@remove')
+      ->name('AdminPanel/Companies/remove');
 
-Route::post('AdminPanel/Companis/storemodal', 'CompanyController@storemodal')
-      ->name('companis.storemodal');
+Route::delete('AdminPanel/Companies/{company}', 'CompanyController@destroy')
+      ->name('AdminPanel/Companies/destroy');
 
-Route::resource('companis', 'CompanyController');
+Route::post('AdminPanel/Companies/storemodal', 'CompanyController@storemodal')
+      ->name('companies.storemodal');
+
+Route::resource('companies', 'CompanyController');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('AdminPanel/Cliens/{cliens1}/show', 'ClientController@show')
       ->name('AdminPanel/Cliens/show');
@@ -144,11 +147,32 @@ Route::get('WorkerPanel/blackboard', 'WorkerController@blackboard')
 ////////////////////////////////////////////////////////////////////////////////
 Route::post('Request/blackboardmove', 'RequestController@blackboardmove')
       ->name('Request.blackboardmove');
-Route::post('WorkerPanel/CreateMail', 'WorkerController@sendmail')
-      ->name('workers.createmail');
+Route::post('WorkerPanel/CreateMail', 'WorkerController@sendmail')->name('workers.createmail');
 Route::resource('workers', 'WorkerController');
+
 /////////////////////////////////////////////////////////////////////////////
+Route::get('AdminPanel/Timer/index', 'AdminTimerController@index')
+      ->name('AdminPanel/Timer/index');
+Route::resource('time', 'AdminController');
+
+Route::get('AdminPanel/Rating/index', 'AdminRatingController@index')
+      ->name('AdminPanel/Rating/index');
+Route::resource('rating', 'AdminRatingController');
+/////////////////////////////////////////////////////////////////////////////
+Route::get('x', 'RequestController@find')->name('requests.find');
+Route::get('y', 'AdminStatisticController@y')->name('y');
+
+
+Route::get('AdminPanel/Statistics/create', 'AdminStatisticController@create')
+      ->name('AdminPanel/Statistics/create');
+
+Route::get('AdminPanel/Statistics/index', 'AdminStatisticController@index')
+     ->name('AdminPanel/Statistics/index');
+Route::resource('statistics', 'AdminStatisticController');
+
+//////////////////////////////////////////////////////////////////////////////////
 Route::get('/AgileDosk', 'WorkerController@agileaxiss')->name('/AgileDosk');
+Route::get('/rating-data/{user}', 'AdminRatingController@jsindex')->name('rating-data');
 Route::get('/ErrorExp', 'WorkerController@Errorprin')->name('/ErrorExp');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('redirection', 'WorkerController@redirection')->name('redirection');

@@ -13,7 +13,7 @@ class ClientController extends Controller
     { try {
       if ($request->user()->role_id === 1)
       {
-        $clien = Client::orderBy('id', 'ASC')->paginate(5);
+        $clien = Client::orderBy('id', 'ASC')->paginate(20);
         return view('AdminPanel/Cliens.index')->withClien($clien);
       }
       else

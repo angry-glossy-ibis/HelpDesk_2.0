@@ -26,11 +26,13 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light navbar-laravel">
+            <div class="container-fluid 1">
+
                 <a class="navbar-brand" href="{{ route("redirection") }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -70,11 +72,13 @@
             </div>
         </nav>
 
-        <main class="py-4">
+      <!--  <main class="py-4">
             @yield('content')
-        </main>
+        </main>-->
     </div>
     <main>
+      @stack ('breadcrumbs')
+
         <div class="container-fluid">
             <h1>@yield('title')</h1>
 

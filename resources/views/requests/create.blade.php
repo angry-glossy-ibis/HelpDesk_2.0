@@ -3,11 +3,17 @@
 {{-- Этот шаблон расширяет (наследует) resources/views/base.blade.php --}}
 @extends('base')
 
-{{-- В секции title родительского шаблона будет выведен перевод фразы: Create product --}}
-@section('title', __('Заявка'))
-
 {{-- В секции main родительского шаблона будет выведена форма --}}
 @section('main')
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 mt-5">
+  <h1>{{__('Заявка')}}</h1>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
     {{-- Форма предъявляется методом HTTP POST на маршрут products.create --}}
     {{
         Form::model($requests, [
@@ -49,7 +55,7 @@
           {{
               Form::model($compan, [
                   'method' => 'POST',
-                  'route'  => 'companis.storemodal'
+                  'route'  => 'companies.storemodal'
               ])
           }}
           {{

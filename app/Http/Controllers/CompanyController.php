@@ -16,8 +16,8 @@ class CompanyController extends Controller
       try {
       if ($request->user()->role_id === 1)
       {
-        $compan = Company::orderBy('id', 'ASC')->paginate(5);
-        return view('AdminPanel/Companis.index')->withCompan($compan);
+        $compan = Company::orderBy('id', 'ASC')->paginate(20);
+        return view('AdminPanel/Companies.index')->withCompan($compan);
       }
       else
       {
@@ -34,7 +34,7 @@ class CompanyController extends Controller
       try {
       if ($request->user()->role_id === 1 or $request->user()->role_id === 2)
       {
-        return view('AdminPanel/Companis.create')->withCompan($compan, $request);
+        return view('AdminPanel/Companies.create')->withCompan($compan, $request);
       }
       else
       {
@@ -51,7 +51,7 @@ class CompanyController extends Controller
       $attributes = $request->only(['CompName', 'CompMail', 'CompPhone']);
       //var_dump($attributes);
       $compan1 = Company::create($attributes);
-      return redirect(route('AdminPanel/Companis/index'));
+      return redirect(route('AdminPanel/Companies/index'));
     }
 
     public function storemodal(StoreModalCompanyRequest $request)
@@ -63,13 +63,13 @@ class CompanyController extends Controller
     }
 
     //функция просмотра компании
-    public function show(Company $company1, Request $request)
+    public function show(Company $company, Request $request)
     {
       try {
       if ($request->user()->role_id === 1)
       {
         //var_dump($company1->id);
-           return view('AdminPanel/Companis.show')->withCompany1($company1);
+           return view('AdminPanel/Companies.show')->withCompany($company);
       }
       else
       {
@@ -82,12 +82,12 @@ class CompanyController extends Controller
     }
 
     //функция изменения компании
-    public function edit(Company $company1, Request $request)
+    public function edit(Company $company, Request $request)
     {
       try {
       if ($request->user()->role_id === 1)
       {
-        return view('AdminPanel/Companis.edit')->withCompany1($company1);
+        return view('AdminPanel/Companies.edit')->withCompany($company);
       }
       else
       {
@@ -99,28 +99,30 @@ class CompanyController extends Controller
     }
 
     //
-    public function update(StoreCompanyRequest $comp, Company $company1)
+    public function update(StoreCompanyRequest $comp, Company $company)
     {
         $atributcomp = $comp->only(['CompName', 'CompMail', 'CompPhone']);
-        $company1 -> update($atributcomp);
-        return redirect(route('AdminPanel/Companis.index'));
+        $company->update($atributcomp);
+        return redirect(route('AdminPanel/Companies/index'));
     }
 
     //
-    public function remove(Company $company1, Request $request)
+    public function remove(Company $company, Request $request)
     {
-      try {
-      if ($request->user()->role_id === 1)
-      {
-        //var_dump($company1->id);
-          return view('AdminPanel/Companis.remove')->withCompany1($company1);
-      }
-      else
-      {
-        return view('/ErrorExp');
-      }
-    }catch (\Exception $exception) {
-    return view('/ErrorExp');
-}
+        try {
+            if ($request->user()->role_id === 1) {
+                return view('AdminPanel/Companies.remove')->withCompany($company);
+            } else {
+                return view('/ErrorExp');
+            }
+        } catch (\Exception $exception) {
+            return view('/ErrorExp');
+        }
+    }
+
+    public function destroy(Company $company, Request $request)
+    {
+        $company->delete();
+        return redirect(route('AdminPanel/Companies/index'));
     }
 }

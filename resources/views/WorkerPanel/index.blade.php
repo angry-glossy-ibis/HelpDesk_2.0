@@ -12,8 +12,16 @@
   }
 </style>
 <div class = "center">
-  {{-- В секции title родительского шаблона будет выведен перевод фразы: Menu Admina --}}
-  @section('title', __('Меню сотрудника'))
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4 mt-5">
+    <h1>{{__('Меню сотрудника')}}</h1>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+
 <div class="col">
 <div class="container-fluid 3">
 
@@ -30,5 +38,8 @@
 </div>
 </div>
 </div>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+  <p class="mb-1">&copy; В будущем здесь будет подвал!</p>
+</footer>
 </div>
 @endsection

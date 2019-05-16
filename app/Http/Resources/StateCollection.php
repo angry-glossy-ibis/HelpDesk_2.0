@@ -14,15 +14,10 @@ class StateCollection extends JsonResource
      */
     public function toArray($request)
     {
-  //    var_dump($request->toArray());
-  //echo 'HELLOMUTHAFUCKA';
-//  $col = RequestCollection::collection($this->requests);
-//  var_dump($col);
-//      var_dump(RequestCollection::collection($this->requests[0]));
-     return [
-         'id' => 'x'.$this->id,
-         'title' => $this->name,
-         'item' => RequestCollection::collection($this->requests),
-      ];
+        return [
+            'id' => 'x'.$this->id,
+            'title' => $this->name,
+            'item' => RequestCollection::collection($this->requests),
+        ];
     }
 }

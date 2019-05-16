@@ -17,7 +17,7 @@
       {{
           Form::model($compan, [
               'method' => 'POST',
-              'route'  => 'companis.storemodal'
+              'route'  => 'companies.storemodal'
           ])
       }}
       {{

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\client;
 use App\User;
-use App\roles;
-use App\position;
+use App\Role;
+use App\Position;
 use App\Company;
 use Illuminate\Http\Request;
 Use App\Http\Requests\UserRequest;
@@ -37,8 +37,8 @@ class UserController extends Controller
         if ($request->user()->role_id === 1)
         {
           $user = new User();
-          $roles = roles::orderBy('id')->pluck('name', 'id');
-          $positions = position::orderBy('id')->pluck('name', 'id');
+          $roles = Role::orderBy('id')->pluck('name', 'id');
+          $positions = Position::orderBy('id')->pluck('name', 'id');
           return view ('AdminPanel/Users.create', compact('roles', 'positions', 'user'));
         }
         else

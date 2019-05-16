@@ -83,9 +83,7 @@ class WorkerController extends Controller
     //функция изменения заявки
     public function edit(R $request1, Request $request)
     {
-      try {
-        if ($request->user()->role_id === 2)
-        {
+
           $state = State::orderBy('id')->pluck('name', 'id');
           if ($request1->state_id == 1)
           {
@@ -104,17 +102,14 @@ class WorkerController extends Controller
           if ($request1->state_id == 3)
           {
             $min1 = State::where('name', '=', 'Готова')->value('time_execution');
-            $endtime = 0;
-          }
+          } else
+          $min1 = State::where('name', '=', 'Выполняется')->value('time_execution');
+          $min1 = $min1 * 60;
+          $begintime = strtotime($request1->updated_at) + $min1;
+          $endtime = date('c', $begintime);
           return view('WorkerPanel.edit', compact('request1', 'state', 'endtime'));
-        }
-        else
-        {
-          return view('/ErrorExp');
-        }
-            } catch (\Exception $exception) {
-          return view('/ErrorExp');
-        }
+
+
     }
 
     //функция записи в бд изменений
@@ -122,8 +117,12 @@ class WorkerController extends Controller
     {
           $atributrequest = $r->only(['name', 'summary', 'comm', 'state_id']);
           $atributclient = $r->only(['ClientSurname', 'ClientName', 'ClientPatronymic']);
+
+          $this->incrating($r);
+
           $request1->update($atributrequest);
           $request1 ->client->update($atributclient);
+
           return redirect(route('requests.index'));
     }
 
@@ -199,19 +198,19 @@ class WorkerController extends Controller
 
     public function decrating(R $request1)
     {
-      $attributes = $request1->only(['user_id']);
-      $user = User::findOrFail($attributes['user_id']);
+      //$attributes = $request1->only(['user_id']);
+      //$user = User::findOrFail($attributes['user_id']);
+      $user = $request1-> user();
       $user->rating = $user->rating - 2;
       $user->update();
-      var_dump('Ваш рейтинг понижен на 20 единиц!!!');
+      //var_dump('Ваш рейтинг понижен на 2 единиц!!!');
     }
 
-    public function incrating(R $request1)
+    public function incrating(X $request1)
     {
-      $attributes = $request1->only(['user_id']);
-      $user = User::findOrFail($attributes['user_id']);
+      $user = $request1-> user();
       $user->rating = $user->rating + 1;
       $user->update();
-      var_dump('Ваш рейтинг повышен на 5 единиц!!!');
+      //var_dump('Ваш рейтинг повышен на 1 единиц!!!');
     }
 }

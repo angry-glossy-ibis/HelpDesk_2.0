@@ -13,13 +13,13 @@
 {{
     Form::model($compan, [
         'method' => 'POST',
-        'route'  => 'companis.store'
+        'route'  => 'companies.store'
     ])
 }}
 <div class="row">
 <div class="col-sm-15">
 <div class="container-fluid 1">
-  <p><a class="col btn btn-success" href="{{ route("AdminPanel/Companis/index") }}">{{__('назад для администратора')}}</a></p>
+  <p><a class="col btn btn-success" href="{{ route("AdminPanel/Companies/index") }}">{{__('назад для администратора')}}</a></p>
   <p><a class="col btn btn-success" href="{{ route("requests.create") }}">{{__('назад для сотрудника')}}</a></p>
 </div>
 </div>

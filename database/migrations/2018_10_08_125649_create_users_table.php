@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE')->onUpdate('RESTRICT');
             $table->integer('position_id')->unsigned();
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('CASCADE')->onUpdate('RESTRICT');
-            $table->integer('rating');
+            $table->integer('rating')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

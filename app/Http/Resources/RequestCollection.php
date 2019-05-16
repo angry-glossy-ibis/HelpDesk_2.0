@@ -17,7 +17,6 @@ class RequestCollection extends JsonResource
         return [
            'eid' => $this ->id,
           'title' => '<p> №'.$this->id.'</p>'.'<h5>'.$this->name.'</h5>'.'<p>'.$this->created_at.'</p>',
-
         ];
     }
 }

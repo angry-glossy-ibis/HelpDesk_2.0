@@ -12,11 +12,19 @@
 <div class="row">
   <div class="col-sm-15">
     <div class="container-fluid 1">
-      <a class="col btn btn-success" href="{{ route("AdminPanel/Companis/index") }}">{{__('назад')}}</a>
+      <a class="col btn btn-success" href="{{ route("AdminPanel/Companies/index") }}">{{__('назад')}}</a>
     </div>
   </div>
 </div>
-
+{{
+    Form::model($company, [
+        'method' => 'DELETE',
+        'route'  => [
+            'AdminPanel/Companies/destroy',
+            $company->id,
+        ]
+    ])
+}}
 {{-- Кнопка предъявления формы --}}
 {{
     Form::submit(
@@ -26,4 +34,5 @@
         ]
     )
 }}
+{{Form::close()}}
 @endsection

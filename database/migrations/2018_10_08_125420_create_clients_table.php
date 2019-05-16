@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->string('ClientSurname', 50);
             $table->string('ClientName', 50);
-            $table->string('ClientPatronymic', 50);
+            $table->string('ClientPatronymic', 50)->nullable();
             $table->string('ClientMail', 200)->unique();
             $table->string('ClientPhone', 200)->unique();
             $table->integer('company_id')->unsigned();

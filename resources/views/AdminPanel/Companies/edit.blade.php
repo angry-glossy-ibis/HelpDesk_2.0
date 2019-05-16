@@ -11,16 +11,16 @@
 
 {{-- Форма предъявляется методом HTTP PUT на веб­‑адрес: Company/id, где ID ⁠— первичный ключ товара --}}
 {{
-    Form::model($company1, [
+    Form::model($company, [
         'method' => 'PUT',
         'route'  => [
-            'AdminPanel/Companis/update',
-            $company1->id,
+            'AdminPanel/Companies/update',
+            $company->id,
         ]
     ])
 }}
-{{-- Включаем шаблон resources/views/AdminPanel/Companis/partials/form2.blade.php --}}
-@include('AdminPanel/Companis/partials.form2')
+{{-- Включаем шаблон resources/views/AdminPanel/Companies/partials/form2.blade.php --}}
+@include('AdminPanel/Companies/partials.form2')
 {{-- Кнопка предъявления формы --}}
 {{
     Form::submit(

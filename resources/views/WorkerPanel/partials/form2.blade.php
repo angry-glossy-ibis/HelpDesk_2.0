@@ -7,7 +7,9 @@ crossorigin="anonymous"></script>
 <div class="row">
 <div class="col-sm-15">
 <div class="container-fluid 1">
-<a class="col btn btn-success" href="{{ route("requests.index") }}">{{__('назад')}}</a>
+  @push('breadcrumbs')
+  <a class="mt-1 ml-3 btn btn-success" href="{{ route("requests.index") }}">{{__('назад')}}</a>
+  @endpush
 </div>
 </div>
 </div>

@@ -3,11 +3,18 @@
 {{-- Этот шаблон расширяет (наследует) resources/views/base.blade.php --}}
 @extends('base')
 
-{{-- В секции title родительского шаблона будет выведен перевод фразы: Edit product --}}
-@section('title', __('Изменение заявки'))
-
 {{-- В секции main родительского шаблона будет выведена форма --}}
 @section('main')
+
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 mt-5">
+  <h1>{{__('Изменение заявки')}}</h1>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
 
 {{-- Форма предъявляется методом HTTP PUT на веб­‑адрес: products/ID, где ID ⁠— первичный ключ товара --}}
 {{
@@ -31,43 +38,4 @@
     )
 }}
 {{Form::close()}}
-
-{{
-    Form::model($request1, [
-        'method' => 'PUT',
-        'route'  => [
-            'WorkerPanel.decrating',
-            $request1->id,
-        ]
-    ])
-}}
-{{
-    Form::submit(
-        __('Отнять 2'),
-        [
-            'class' => 'btn btn-danger',
-        ]
-    )
-}}
-{{Form::close()}}
-
-{{
-    Form::model($request1, [
-        'method' => 'PUT',
-        'route'  => [
-            'WorkerPanel.incrating',
-            $request1->id,
-        ]
-    ])
-}}
-{{
-    Form::submit(
-        __('Прибавить 1'),
-        [
-            'class' => 'btn btn-primary',
-        ]
-    )
-}}
-{{Form::close()}}
-
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Requests;
+use App\Request as R;
 use Illuminate\Http\Request;
 use App\Company;
 
@@ -14,7 +14,7 @@ class AdminRequestController extends Controller
     try {
     if ($requests->user()->role_id === 1)
     {
-      $requests = Requests::orderBy('id', 'ASC')->paginate(5);
+      $requests = R::orderBy('id', 'ASC')->paginate(20);
       return view('AdminPanel.Request.index')->withRequests($requests);
     }
     else

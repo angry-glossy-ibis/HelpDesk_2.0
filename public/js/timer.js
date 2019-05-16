@@ -22,20 +22,20 @@ window.onload = function () {
 
 				// то отключаем таймер.
 				window.clearInterval(timer);
-				document.getElementById('endtime').style.background = '#f00';
+				document.getElementById('endtime').style.background = '#fcc';
 				document.getElementById('endtime').value = 0;
 				var id_request = document.getElementById('requestid').value;
-				function Min(id_request)
-				{
+				//unction Min(id_request){
    				$.ajax({
-      		url: 'http://localhost:8080/HelpDesk/public/WorkerPanel/1/decrating',
-      		data: { id: id }
+						type: 'PUT',
+      		url: '/HelpDesk/public/WorkerPanel/1/decrating'
    			}).done(function() {
+					console.log('время кончилось');
       		alert('Changed!');
    			});
 			}
 			}
-		},
+		,
 
 		// Вести отсчёт в секундах.
 		countdown.HOURS|countdown.MINUTES|countdown.SECONDS

@@ -3,11 +3,23 @@
 {{-- Этот шаблон расширяет (наследует) resources/views/base.blade.php --}}
 @extends('base')
 
-{{-- В секции title родительского шаблона будет выведен перевод фразы: Users --}}
-@section('title', __('Список пользователей'))
-
 {{-- В секции main родительского шаблона будет выведена форма --}}
 @section('main')
+<script defer src="{{ asset('js/tablesort.min.js') }}"></script>
+<script defer src="{{ asset('js/tablesort.number.js') }}"></script>
+<script defer src="{{ asset('js/tablesort.date.js') }}"></script>
+<script defer src="{{ asset('js/inittable.js') }}"></script>
+
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 mt-5">
+  <h1>{{__('Список пользователей')}}</h1>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+
 <div class="col">
 <div class="row">
 <div class="container-fluid 3">
@@ -22,7 +34,8 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table table-hover table-striped">
+    <table id="table-id" class="table table-hover">
+      <thead>
         <tr>
             <th>{{ __('Id') }}</th>
             <th>{{ __('Псевдоним') }}</th>
@@ -31,28 +44,34 @@
             <th>{{ __('Фамилия') }}</th>
             <th>{{ __('телефон') }}</th>
             <th>{{ __('Имя в Телеграмме') }}</th>
+            <th>{{ __('Роль') }}</th>
             <th>{{ __('изменить') }}</th>
             <th>{{ __('удалить') }}</th>
         </tr>
+      </thead>
         @foreach ($users as $user1)
             <tr>
-              <td>{{ Html::secureLink(
-                  route('AdminPanel/Users/show', $user1->id),
-                  $user1->id
-              ) }}</td>
+              <td>
+              <a class="btn btn-block btn-primary" href="{{ route("AdminPanel/Users/show", $user1->id)}}">{{__($user1->id)}}</a>
+            </td>
                 <td>{{ $user1->login }}</td>
                 <td>{{ $user1->email }}</td>
                 <td>{{ $user1->name }}</td>
                 <td>{{ $user1->surname }}</td>
                 <td>{{ $user1->phone }}</td>
                 <td>{{ $user1->TeleName }}</td>
-                <td>{{ Html::secureLink(route('AdminPanel/Users/edit', $user1->id),
-                        __('Изменить пользователя'))}}</td>
-                <td>{{ Html::secureLink(route('AdminPanel/Users/remove', $user1->id),
-                        __('Удалить пользователя'))}}</td>
+                <td>{{ $user1->role->name }}</td>
+                <td>
+                  <a class="btn btn-block btn-warning" href="{{ route("AdminPanel/Users/edit", $user1->id)}}">{{__('Редактировать')}}</a></td>
+                <td>
+                  <a class="btn btn-block btn-danger" href="{{ route("AdminPanel/Users/remove", $user1->id)}}">{{__('Х')}}</a></td>
+                </td>
             </tr>
         @endforeach
     </table>
 </div>
 {{$users->links()}}
+<footer class="my-5 pt-5 text-muted text-center text-small">
+  <p class="mb-1">&copy; В будущем здесь будет подвал!</p>
+</footer>
 @endsection

@@ -40,10 +40,7 @@ class StoreRequest extends FormRequest
           ],
           'ClientPatronymic' => [                  // Правила валидации для поля name
               'max:255',                // Длина не более 32 Б
-              'min:1',                 // Длина не менее 1 Б
-              'regex:/^[\d а-яё!,.-]+$/iu', // Регулярное выражение: а-я, цифры, пробел
-              'required',              // Обязательное поле
-              //'unique:products',          // Не допускать повторов в таблице rooms
+              'min:0',                 // Длина не менее 1 Б
           ],
           'ClientPhone' => [                  // Правила валидации для поля name
               'numeric',
@@ -61,7 +58,7 @@ class StoreRequest extends FormRequest
           'summary' => [                  // Правила валидации для поля name
               'required',
               'max:255',                // Длина не более 32 Б
-              'min:1',   
+              'min:1',
           ],
         ];
     }

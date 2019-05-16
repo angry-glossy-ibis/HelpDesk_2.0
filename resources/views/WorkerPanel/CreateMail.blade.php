@@ -8,8 +8,18 @@
 
 {{-- В секции main родительского шаблона будет выведена форма --}}
 @section('main')
-    {{
-      Form::model($workers, [
+
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 mt-5">
+  <h1>{{__('Написать письмо')}}</h1>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+
+    {{  Form::model($workers, [
           'method' => 'POST',
           'route'  => 'workers.createmail'
         ])
